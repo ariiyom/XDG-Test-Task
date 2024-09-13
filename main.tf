@@ -11,6 +11,13 @@ module "apis" {
         "compute.googleapis.com",
         "dns.googleapis.com",
         "iam.googleapis.com",
-        "certificatemanager.googleapis.com"
+        "certificatemanager.googleapis.com",
+        "domains.googleapis.com"
     ]
+}
+
+module "gcs" {
+  source = "./modules/gcs"
+  bucket_name = "${local.project}-private"
+  depends_on = [ module.apis ]
 }
