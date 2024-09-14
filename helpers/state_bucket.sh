@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script should be run first before initializing Terraform. This will make the bucket available for storing the state file.
 
 if ! command -v gcloud &> /dev/null
 then

@@ -1,0 +1,63 @@
+# Configure Cloud CDN to use bucket as backend service for content caching
+
+resource "google_compute_backend_bucket" "xdg-backend-bucket" {
+    name            = var.backend_name
+    bucket_name     = var.backend_bucket_name
+    enable_cdn      = true 
+}
+
+resource "google_compute_url_map" "url_map" {
+    name            = var.url_map
+    default_service = google_compute_backend_bucket.xdg-backend-bucket.id
+
+    host_rule {
+      hosts = ["*"]
+      path_matcher = "allpaths"
+    }
+
+    path_matcher {
+      name = "allpaths"
+      default_service = google_compute_backend_bucket.xdg-backend-bucket.id
+    }
+}
+
+# Managed SSL certificate for custom domain
+resource "google_compute_managed_ssl_certificate" "managed-certs" {
+    name    = var.cert_name 
+    
+    managed {
+      domains = var.domains
+    }
+}
+
+# HTTP/S Proxy to route incoming requests to URL Map
+resource "google_compute_target_http_proxy" "http-proxy" {
+    name            = var.http_proxy
+    url_map         = google_compute_url_map.url_map.id
+}
+
+resource "google_compute_target_https_proxy" "https-proxy" {
+    name             = var.https_proxy 
+    url_map          = google_compute_url_map.url_map.id
+    ssl_certificates = [google_compute_managed_ssl_certificate.managed-certs.id] 
+
+    depends_on = [ google_compute_managed_ssl_certificate.managed-certs ]
+}
+
+# Forward traffic to LB for HTTP/S load balancing
+resource "google_compute_global_forwarding_rule" "http-forwarding-rule" {
+    name                   = var.http_forwarding_rule
+    target                 = google_compute_target_http_proxy.http-proxy.id
+    port_range             = 80
+    ip_address             = var.ip_address
+    load_balancing_scheme  = "EXTERNAL_MANAGED"
+}
+
+resource "google_compute_global_forwarding_rule" "https-forwarding-rule" {
+    name                   = var.https_forwarding_rule
+    target                 = google_compute_target_https_proxy.https-proxy.id
+    port_range             = 443
+    ip_protocol            = "TCP"
+    ip_address             = var.ip_address
+    load_balancing_scheme  = "EXTERNAL_MANAGED"
+}
