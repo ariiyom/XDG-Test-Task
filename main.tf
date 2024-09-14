@@ -14,7 +14,9 @@ module "apis" {
         "dns.googleapis.com",
         "iam.googleapis.com",
         "certificatemanager.googleapis.com",
-        "domains.googleapis.com"
+        "domains.googleapis.com",
+        "networkservices.googleapis.com",
+        "secretmanager.googleapis.com"
     ]
 }
 
@@ -22,6 +24,7 @@ module "gcs" {
   source      = "./modules/gcs"
   bucket_name = "${local.project}-private"
 }
+
 
 module "dns" {
   source                      = "./modules/dns"
@@ -33,10 +36,30 @@ module "dns" {
   depends_on  = [ module.apis ]
 }
 
-module "lb" {
-  source                = "./modules/lb"
+module "cdn" {
+  source                = "./modules/cdn"
   backend_name          = "${local.project}-backend-bucket"
   backend_bucket_name   = module.gcs.bucket_name
+  key_name              = "${local.project}-backend-key" 
+
+  depends_on = [ module.apis ]
+}
+
+# Cloud CDN uses the same service account as Google Cloud Load Balancers
+# module "iam" {
+#   source                            = "./modules/iam"
+#   bucket_name                       = module.gcs.bucket_name 
+#   # service_account_id                = "${local.project}-cdn-sa"
+#   # service_account_display_name      = "${local.project} CDN SA"
+#   # key_name                          = "${local.project}-hmac-key" 
+#   cdn_default_sa                  = "service-${local.project_num}@cloud-cdn-fill.iam.gserviceaccount.com"
+  
+#   depends_on = [ module.cdn ]
+# }
+
+module "lb" {
+  source                = "./modules/lb"
+  backend_bucket        = module.cdn.backend_bucket
   url_map               = "${local.project}-url-map" 
   cert_name             = "${local.project}-cert" 
   domains               = ["${local.project}.${local.custom_domain}"] 
@@ -45,4 +68,7 @@ module "lb" {
   http_forwarding_rule  = "${local.project}-http-forwarding-rule"
   https_forwarding_rule = "${local.project}-https-forwarding-rule"
   ip_address            = module.dns.external-load-balancer-ip 
+
+  depends_on  = [ module.apis,module.cdn ]
 }
+

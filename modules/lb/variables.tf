@@ -1,9 +1,4 @@
-variable "backend_bucket_name" {
-    type = string
-    description = "Name of Bucket to use as Backend for LB"
-}
-
-variable "backend_name" {
+variable "backend_bucket" {
     type = string
 }
 

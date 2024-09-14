@@ -1,14 +1,6 @@
-# Configure Cloud CDN to use bucket as backend service for content caching
-
-resource "google_compute_backend_bucket" "xdg-backend-bucket" {
-    name            = var.backend_name
-    bucket_name     = var.backend_bucket_name
-    enable_cdn      = true 
-}
-
 resource "google_compute_url_map" "url_map" {
     name            = var.url_map
-    default_service = google_compute_backend_bucket.xdg-backend-bucket.id
+    default_service = var.backend_bucket
 
     host_rule {
       hosts = ["*"]
@@ -17,7 +9,7 @@ resource "google_compute_url_map" "url_map" {
 
     path_matcher {
       name = "allpaths"
-      default_service = google_compute_backend_bucket.xdg-backend-bucket.id
+      default_service = var.backend_bucket
     }
 }
 
