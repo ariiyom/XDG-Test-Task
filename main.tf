@@ -76,7 +76,7 @@ module "url" {
   bucket_name         = module.gcs.bucket_name
   secret_name         = module.cdn.key-id 
   url_prefix          = "https://${local.project}.${local.custom_domain}"
-  expiration          = "600s" # 10mins, can be changed according to needs
+  expiration          = "18000s" # 5hrs, can be changed according to needs
 
   depends_on = [ module.gcs, module.cdn, module.lb ]
 }
