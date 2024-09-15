@@ -104,8 +104,8 @@ Run the following commands from the root folder
 
 ### Verify
 
+- Check from Google Cloud Console UI that all the resources were created
+
 - Using the signed URL link after a few hours should serve the desired content. It should look like this:
   
 ![Desired Output](docs/success.png)
-
-- Check from Google Cloud Console UI that all the resources were created
