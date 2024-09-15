@@ -99,6 +99,7 @@ Run the following commands from the root folder
 ### Important Things to Note
 
 - Point your custom domain's (via your domain provider) nameservers (NS records) to the list of nameservers provided in the Terraform output in your terminal. Please note that after this is done, DNS propagation over the internet might take a few hours so your generated signed URL might not serve content straight away. For this reason, the default TTL of the signed URL is 5hrs.
+  
 ![Sample Output](docs/sample_output.png)
 
 - The managed SSL certificate resource is created relatively quickly by Terraform but it takes some time to be provisioned by Google (it could take a couple of hours as well)
@@ -106,6 +107,7 @@ Run the following commands from the root folder
 ### Verify
 
 - Using the signed URL link after a few hours should serve the desired content. It should look like this:
+  
 ![Desired Output](docs/success.png)
 
 - Check from Google Cloud Console UI that all the resources were created
