@@ -5,14 +5,14 @@
 - [General Overview](#general-overview)
 - [Architechture Overview](#architechture-overview)
 - [Installation Guide](#installation-guide)
-- [Assumptions](#assumptions)
-- [Prerequisites](#prerequisites)
-    - [Tools](#tools)
-    - [Helpers](#helpers)
-- [Installation](#installation)
+    - [Assumptions](#assumptions)
+    - [Prerequisites](#prerequisites)
+        - [Tools](#tools)
+        - [Helpers](#helpers)
+    - [Installation](#installation)
 - [Verification](#verification)
-- [Important Things to Note](#important-things-to-note)
-- [Verify](#verify)
+    - [Important Things to Note](#important-things-to-note)
+    - [Verify](#verify)
 
 
 ## General Overview
