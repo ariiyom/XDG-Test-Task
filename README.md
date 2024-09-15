@@ -2,19 +2,17 @@
 
 ## Table of Contents
 
-- [XDG-Test-Task](#xdg-test-task)
-  - [Table of Contents](#table-of-contents)
-  - [General Overview](#general-overview)
-  - [Architechture Overview](#architechture-overview)
-  - [Installation Guide](#installation-guide)
-    - [Assumptions](#assumptions)
-    - [Prerequisites](#prerequisites)
-      - [Tools](#tools)
-      - [Helpers](#helpers)
-    - [Installation](#installation)
-  - [Verification](#verification)
-    - [Important Things to Note](#important-things-to-note)
-    - [Verify](#verify)
+- [General Overview](#general-overview)
+- [Architechture Overview](#architechture-overview)
+- [Installation Guide](#installation-guide)
+- [Assumptions](#assumptions)
+- [Prerequisites](#prerequisites)
+    - [Tools](#tools)
+    - [Helpers](#helpers)
+- [Installation](#installation)
+- [Verification](#verification)
+- [Important Things to Note](#important-things-to-note)
+- [Verify](#verify)
 
 
 ## General Overview
