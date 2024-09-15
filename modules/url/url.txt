@@ -1,0 +1,1 @@
+signedUrl: https://xdg-task.koikonkorras.store/index.html?Expires=1726414380&KeyName=xdg-task-cdn-key&Signature=CE8sRxOYX5-sVZq6x_5MyAcPJxI=

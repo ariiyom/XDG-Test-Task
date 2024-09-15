@@ -12,3 +12,8 @@ variable "region" {
   type = string
   description = "GCP Region"
 }
+
+variable "custom_domain" {
+  type = string
+  description = "Custom Domain"
+}

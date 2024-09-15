@@ -1,4 +1,4 @@
-variable "backend_bucket" {
+variable "backend_bucket_link" {
     type = string
 }
 

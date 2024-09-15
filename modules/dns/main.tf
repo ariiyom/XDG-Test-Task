@@ -1,11 +1,11 @@
 # Reserve global external IP
 resource "google_compute_global_address" "lb-address" {
-    name            = var.external_lb_name
+    name            = var.external_lb_address
     address_type    = "EXTERNAL"
     ip_version      = "IPV4"
 }
 
-# Creates a zone for the custom domain that you own. Once provisioned, update your domain's nameservers with your those provided by Cloud DNS
+# Creates a zone for the custom domain that you own. Once provisioned, update your domain's nameservers with those provided by Cloud DNS
 # After you update nameservers, propagation will take some time
 resource "google_dns_managed_zone" "custom-domain-zone" {
     name        = var.custom_domain_zone

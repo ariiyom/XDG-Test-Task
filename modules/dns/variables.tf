@@ -1,4 +1,4 @@
-variable "external_lb_name" {
+variable "external_lb_address" {
     type = string
 }
 
