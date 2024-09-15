@@ -26,7 +26,7 @@ On a high level, it does the following:
 - Generates a URL signing key and attaches it to the configured backend bucket (this will be used by Cloud CDN to filter which requests to serve content to)
 - Stores the URL signing key in Google secret manager
 - Configures HTTPS Load Balancer to route traffic to the backend bucket
-- Create managed SSL certificate for the custom domain to have secure connections
+- Creates managed SSL certificate for the custom domain to have secure connections
 - Creates an IAM policy that grants access to cloud CDN's default service account so it is authorized to fetch and serve the content from the private GCP bucket
 - Generates URLs signed with Cloud CDN's signing key so content will be served
 
