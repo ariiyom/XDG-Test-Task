@@ -80,6 +80,8 @@ The following MUST be installed and present before running the code:
 
 ### Installation
 
+Run the following commands from the root folder
+
 ```
     terraform init
 ```
