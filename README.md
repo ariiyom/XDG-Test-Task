@@ -52,7 +52,7 @@ The following MUST be installed and present before running the code:
 
 #### Helpers
 
-- Run ```helpers/state_bucket.sh``` before anything else. This will create a gcp bucket which will be used by Terraform to remotely store the state file. Script expects 3 arguments
+- Run ```helpers/state_bucket.sh``` before anything else. This will create a gcp bucket which will be used by Terraform to remotely store the state file. Script expects 3 arguments: bucket name, location & project ID
 ``` 
     bash helpers/state_bucket.sh <your-state-bucket-name> <location-where-bucket-will-be-created> <your-project-id>
 
